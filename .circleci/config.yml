@@ -50,12 +50,11 @@ workflows:
           service_path: services/users-api
           stage_name: ${CIRCLE_BRANCH}
           context: Development
-   test:
-     when: << pipeline.workflows.build >>
-     jobs:
-      - node/test
-      - heroku/deploy-via-git:
-          context: Development
-          requires: 
-            - node/test
-          
+  test:
+   jobs:
+    - node/test
+    - heroku/deploy-via-git:
+        context: Development
+        requires: 
+          - node/test
+
