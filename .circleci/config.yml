@@ -51,9 +51,9 @@ workflows:
           stage_name: ${CIRCLE_BRANCH}
           context: Development
       - node/test
-          requires:
+          requires
             - deploy-service
       - heroku/deploy-via-git:
           context: Development
-          requires:
+          requires
             - node/test
