@@ -54,9 +54,3 @@ workflows:
           service_path: services/posts-api
           stage_name: ${CIRCLE_BRANCH}
           context: Development
-          
-      - deploy-service:
-          name: Deploy Cron Job
-          service_path: services/cron-job
-          stage_name: ${CIRCLE_BRANCH}
-          context: Development
