@@ -47,6 +47,8 @@ workflows:
     jobs:
       - node/test
   build:
+    requires:
+      - test
     jobs:
       - deploy-service:
           name: Deploy Users API
