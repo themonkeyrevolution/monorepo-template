@@ -46,7 +46,7 @@ workflows:
   build-test-deploy:
     jobs:
       - deploy-service:
-          name: Deploy Users API
+          name: deploy-service
           service_path: services/users-api
           stage_name: ${CIRCLE_BRANCH}
           context: Development
