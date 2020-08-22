@@ -51,6 +51,7 @@ workflows:
           stage_name: ${CIRCLE_BRANCH}
           context: Development
   test:
+    when: << pipeline.workflows.build >>
     jobs:
       - node/test
   deploy:
