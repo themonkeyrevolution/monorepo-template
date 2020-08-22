@@ -53,12 +53,6 @@ workflows:
           service_path: services/users-api
           stage_name: ${CIRCLE_BRANCH}
           context: Development
-          
-      - deploy-service:
-          name: Deploy Posts API
-          service_path: services/posts-api
-          stage_name: ${CIRCLE_BRANCH}
-          context: Development
   deploy:
     jobs:
       - heroku/deploy-via-git:
