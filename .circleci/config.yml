@@ -50,7 +50,7 @@ workflows:
           service_path: services/users-api
           stage_name: ${CIRCLE_BRANCH}
           context: Development
-      - node/test:
+      - node/test
           requires:
             - deploy-service
       - heroku/deploy-via-git:
