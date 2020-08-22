@@ -56,4 +56,4 @@ workflows:
       - heroku/deploy-via-git:
           context: Development
           requires:
-            node/test
+            - node/test
