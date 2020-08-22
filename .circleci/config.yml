@@ -63,5 +63,3 @@ workflows:
     jobs:
       - heroku/deploy-via-git:
           context: Development
-    requires:
-      - test
