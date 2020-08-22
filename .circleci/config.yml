@@ -31,13 +31,11 @@ jobs:
             npm install
             cd << parameters.service_path >>
             npm install
-
       - run:
           name: Deploy application
           command: |
             cd << parameters.service_path >>
             serverless deploy -s << parameters.stage_name >>
-
       - save_cache:
           paths:
             - node_modules
@@ -45,18 +43,22 @@ jobs:
           key: dependencies-cache-{{ checksum "package-lock.json" }}-{{ checksum "<< parameters.service_path >>/package-lock.json" }}
   
 workflows:
-  build:
+  build-deploy:
     jobs:
       - deploy-service:
-          name: Building app
+          name: Deploy Users API
           service_path: services/users-api
           stage_name: ${CIRCLE_BRANCH}
           context: Development
-  test:
+          
+      - deploy-service:
+          name: Deploy Posts API
+          service_path: services/posts-api
+          stage_name: ${CIRCLE_BRANCH}
+          context: Development
+  test-deploy:
     jobs:
       - node/test
-  deploy:
-    jobs:
       - heroku/deploy-via-git:
           context: Development
           requires:
