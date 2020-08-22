@@ -55,8 +55,6 @@ workflows:
   test:
     jobs:
       - node/test
-        requires:
-          - deploy-service
   deploy:
     jobs:
       - heroku/deploy-via-git:
