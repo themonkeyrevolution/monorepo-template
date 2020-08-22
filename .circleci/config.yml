@@ -43,7 +43,10 @@ jobs:
           key: dependencies-cache-{{ checksum "package-lock.json" }}-{{ checksum "<< parameters.service_path >>/package-lock.json" }}
   
 workflows:
-  build-deploy:
+  test:
+    jobs:
+      - node/test
+  build:
     jobs:
       - deploy-service:
           name: Deploy Users API
@@ -56,9 +59,8 @@ workflows:
           service_path: services/posts-api
           stage_name: ${CIRCLE_BRANCH}
           context: Development
-  test-deploy:
+  deploy:
     jobs:
-      - node/test
       - heroku/deploy-via-git:
           context: Development
           requires:
